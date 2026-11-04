@@ -1,0 +1,18 @@
+services:
+  bot:
+    build: .
+    container_name: god-photo-ai
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATA_DIR: /app/data
+      HF_HOME: /app/model-cache/huggingface
+      TORCH_HOME: /app/model-cache/torch
+    volumes:
+      - bot_data:/app/data
+      - vision_cache:/app/model-cache
+
+volumes:
+  bot_data:
+  vision_cache:
